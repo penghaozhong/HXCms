@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans      
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd      
+           http://www.springframework.org/schema/context      
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd   
+           http://www.springframework.org/schema/jee  
+           http://www.springframework.org/schema/jee/spring-jee-3.0.xsd  
+           http://www.springframework.org/schema/tx     
+           http://www.springframework.org/schema/tx/spring-tx-3.0.xsd      
+           http://www.springframework.org/schema/aop      
+           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+           http://cxf.apache.org/jaxws 
+    	   http://cxf.apache.org/schemas/jaxws.xsd">
+
+
+
+	<!-- webservice配置 -->
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+		<bean id="webServiceContentMngImpl" class="com.hx.cms.manager.main.impl.WebServiceContentMngImpl"/>
+ 	
+	<jaxws:server id="contentMngWebService"
+		serviceClass="com.hx.cms.manager.main.WebServiceContentMng" address="/contentsave">
+		<jaxws:serviceBean>
+			<ref bean="webServiceContentMngImpl" />
+		</jaxws:serviceBean>
+	</jaxws:server>
+
+	<bean id="webServiceUserMemberMngImpl"
+		class="com.hx.cms.manager.main.impl.WebServiceUserMemberMngImpl" />
+
+	<jaxws:server id="userMemberMngWebService"
+		serviceClass="com.hx.cms.manager.main.WebServiceUserMemberMng"
+		address="/registerMember">
+		<jaxws:serviceBean>
+			<ref bean="webServiceUserMemberMngImpl" />
+		</jaxws:serviceBean>
+	</jaxws:server>
+
+
+	<!-- 注意下面的address，这里的address的名称就是访问的WebService的name -->
+	
+	<jaxws:client id="userMemberMngImpl"
+		serviceClass="com.hx.cms.manager.main.WebClientUserMemberMng"
+		address="http://localhost:8080/ibrebatesCms/services/registerMember">
+
+	</jaxws:client>
+</beans>

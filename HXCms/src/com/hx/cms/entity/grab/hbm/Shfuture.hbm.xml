@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.hx.cms.entity.grab">
+	<class name="Shfuture" table="ie_shfuture">
+ 		<cache usage="read-write"/>
+		<id name="id" type="java.lang.Integer" column="id">
+			<generator class="increment" />
+		</id>
+		 
+		<property name="name" column="name" type="string" not-null="false" length="100"/>
+	 	<property name="latestpri" column="latestpri" type="string" not-null="false" length="100"/>
+	 	<property name="change" column="changes" type="string" not-null="false" length="100"/>
+	 	<property name="buypri" column="buypri" type="string" not-null="false" length="100"/>
+	 	<property name="buyvol" column="buyvol" type="string" not-null="false" length="100"/>
+	 	<property name="sellpri" column="sellpri" type="string" not-null="false" length="100"/>
+	 	<property name="sellvol" column="sellvol" type="string" not-null="false" length="100"/>
+	 	<property name="tradvol" column="tradvol" type="string" not-null="false" length="100"/>
+	 	<property name="open" column="open" type="string" not-null="false" length="100"/>
+	 	<property name="lastclear" column="lastclear" type="string" not-null="false" length="100"/>
+	 	<property name="maxpri" column="maxpri" type="string" not-null="false" length="100"/>
+	 	<property name="minpri" column="minpri" type="string" not-null="false" length="100"/>
+	 	<property name="position" column="position" type="string" not-null="false" length="100"/>
+	 	<property name="zengcang" column="zengcang" type="string" not-null="false" length="100"/>
+	 	<property name="time" column="time" type="string" not-null="false" length="100"/>
+	 	<property name="externaldate" column="externaldate" type="string" not-null="false" length="100" />
+	</class>
+</hibernate-mapping>

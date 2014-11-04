@@ -1,0 +1,5 @@
+<div class="sub_nav">
+      <img src="/${res}/img/hx/content/navimg.png" alt=""/> 当前位置:
+      [#list channel.nodeList as n]<a target="_blank" href="${n.url}" target="_blank">${n.name}</a>[#if n_has_next] &nbsp;&gt;&nbsp;[/#if][/#list] 
+      &nbsp;&gt;&nbsp;[#if content??]正文[#else]列表[/#if]
+</div>

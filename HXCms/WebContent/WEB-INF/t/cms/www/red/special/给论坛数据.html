@@ -1,0 +1,24 @@
+
+[@cms_content_list count="10" orderBy="6"]
+<fieldset style="border:1px dashed #CCCCCC;padding:10px 10px;-moz-border-radius:8px;">
+<legend align="left" style="color:white;width:100px;text-align:center;background-color:#CCCCCC; color:#FF6600">热门文章</legend>
+<table width="100%" cellspacing="0" cellpadding="0" border="0"><tbody><tr>
+[#list tag_list as a]
+[#if a_index==0]
+<td>
+[/#if]
+[#if a_index==5]
+</td><td>
+[/#if]
+<a href="${a.url}" target="_blank" class="rmwz_a">${a.title}</a><br>
+[#if a_index==9]
+</td>
+[/#if]
+[/#list]
+</tr></tbody></table>
+</fieldset>
+[/@cms_content_list]
+<style>
+.rmwz_a{color:#000; font:12px/1.5 Tahoma,'Microsoft Yahei','Simsun'; text-decoration:none;}
+.rmwz_a:hover{ text-decoration:underline;}
+</style>

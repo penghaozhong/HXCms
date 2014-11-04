@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.hx.cms.entity.grab">
+	<class name="Calendar" table="ie_calendar">
+ 		<cache usage="read-write"/>
+		<id name="id" type="java.lang.Integer" column="id">
+			<generator class="increment" />
+		</id>
+		<property name="cid" column="cid" type="string" not-null="false" length="100"/>
+	 	<property name="date" column="date" type="string" not-null="false" length="100"/>
+	 	<property name="time" column="time" type="string" not-null="false" length="100"/>
+	 	<property name="currency" column="currency" type="string" not-null="false" length="100"/>
+	 	<property name="country" column="country" type="string" not-null="false" length="100"/>
+	 	<property name="event" column="event" type="string" not-null="false" length="100"/>
+	 	<property name="description" column="description" type="string" not-null="false" length="100"/>
+	 	<property name="period" column="period" type="string" not-null="false" length="100"/>
+	 	<property name="importance" column="importance" type="string" not-null="false" length="100"/>
+	 	<property name="previous" column="previous" type="string" not-null="false" length="100"/>
+	 	<property name="median" column="median" type="string" not-null="false" length="100"/>
+	 	<property name="ifr_actual" column="ifr_actual" type="string" not-null="false" length="100"/>
+	 	<property name="externaldate" column="externaldate" type="string" not-null="false" length="100" />
+	</class>
+</hibernate-mapping>

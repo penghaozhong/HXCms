@@ -1,0 +1,111 @@
+
+<link rel="stylesheet" type="text/css" href="/${res}/css/jquery-ui.css">
+[#list beans as a]
+[#if a.userId=0]
+<div class="fancy" style="width:667px; border-bottom:#ddd dashed 1px; padding:4px;" id="event${a.id}">
+    <form id="add_form" action="/calendar_update.jspx" method="post">
+    <input type="hidden" name="id"  value="${a.id}">
+    <div class="caldiv"><span>事件时间：</span><input type="text" class="input Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="start" id="startdate" value="${a.start!}" readonly>
+    <span style="padding-left:8px;">日程内容：</span><input type="text" onblur="" style="width:300px" class="input" name="title" id="event"  placeholder="记录你将要做的一件事..." value="${a.title!}">
+   [#if user??]
+    [#if user.admin]
+    <input type="submit" class="btn btn_ok" value="修改"/><input type="button" class="btn btn_del" id="del_event" onclick="clickDelete('${a.id}')" value="删除"/>
+    [/#if]
+    [/#if]
+   </div>
+    </form>
+</div>
+[#else]
+<div class="fancy" style="width:677px;padding:4px; " id="event${a.id}" >
+    <form id="add_form" action="/calendar_update.jspx" method="post">
+    <input type="hidden" name="id"  value="${a.id}">
+    <div class="caldiv"><span>事件时间：</span><input type="text" class="input Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="start" id="startdate" value="${a.start!}" readonly>
+    <span style="padding-left:8px;">日程内容：</span><input type="text" onblur="" style="width:300px" class="input" name="title" id="event"  placeholder="记录你将要做的一件事..." value="${a.title!}">
+    <input type="submit" class="btn btn_ok" value="修改"/><input type="button" class="btn btn_del" id="del_event" onclick="clickDelete('${a.id}')" value="删除"/>
+    </div>
+    </form>
+</div>
+[/#if]
+[/#list]
+<script type="text/javascript" src="/${res}/js/calendar/jquery.form.min.js"></script>
+
+<script type="text/javascript">
+$(function(){
+	$("#isallday").click(function(){
+		if($("#sel_start").css("display")=="none"){
+			$("#sel_start,#sel_end").show();
+		}else{
+			$("#sel_start,#sel_end").hide();
+		}
+	});
+	
+	$("#isend").click(function(){
+		if($("#p_endtime").css("display")=="none"){
+			$("#p_endtime").show();
+		}else{
+			$("#p_endtime").hide();
+		}
+		$.fancybox.resize();//调整高度自适应
+	});
+	
+	//提交表单
+	$('#add_form').ajaxForm({
+		beforeSubmit: showRequest, //表单验证
+        success: showResponse //成功返回
+    }); 
+	
+
+});
+//删除事件
+function clickDelete(id){
+	if(confirm("您确定要删除吗？")){
+		var eventid = id;
+		$.post("/calendar_delete.jspx",{id:eventid},function(msg){
+			if(msg==1){//删除成功
+				document.getElementById("event"+eventid).remove();
+				$('#calendar').fullCalendar('refetchEvents'); //重新获取所有事件数据
+				/* lii(); */
+			}else{
+				alert(msg);	
+			}
+		});
+	}
+}
+
+function showRequest(){
+	var events = $("#event").val();
+	if(events==''){
+		alert("请输入日程内容！");
+		$("#event").focus();
+		return false;
+	}
+}
+function lii() {
+	var f = document.getElementById("events");
+	var childs = f.childNodes; 
+	for(var i = childs.length - 1; i >= 0; i--) {      
+	    f.removeChild(childs[i]);      
+	}   
+	$.getJSON("/calen.jspx?myStart="+timeStamp2String($('#calendar').fullCalendar('getView').start), {
+	}, function(data) {
+			$.each(data, function(){     				
+			    $("#events").append("<li>开始时间:"  + this.start + "|结束时间:"+this.end +"|事件:"+ this.title+"</li>");
+			 });    
+			
+	});
+	
+}
+function showResponse(responseText, statusText, xhr, $form){
+	if(statusText=="success"){	
+		if(responseText==1){
+			$.fancybox.close();
+			$('#calendar').fullCalendar('refetchEvents'); //重新获取所有事件数据
+			/* lii(); */
+		}else{
+			alert(responseText);
+		}
+	}else{
+		alert(statusText);
+	}
+}
+</script>

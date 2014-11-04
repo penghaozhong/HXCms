@@ -1,0 +1,31 @@
+<document>
+<webName><![CDATA[${site.name}]]></webName>
+<webSite><![CDATA[http://www.hx.com/]]></webSite>
+<webTags><![CDATA[国际财经,金融股市,中国经济 ,经济观察,中央银行,外汇官员,财经媒体,时政评论,汇市分析,机构分析 ,外汇视频 ,外汇专栏,贵金属,期指,期货,	持仓报告 ,外汇监管,行业动态 ,监管资讯 ,数据速递,数据解读 央行利率 ]]></webTags>
+
+[@cms_channel_list ids='9,10,11,12,13,14,15,16,17,18,19,20,21,23,24,25,26,28,29,32,35,434'] 
+	[#list tag_list as b]
+		<newsGroup id="${b.name}">
+			[@cms_content_list channelId=b.id channelOption="1" count="20" orderBy='4']
+	          [#list tag_list as a]
+	          		<item id="${a_index}">
+					<url><![CDATA[${site.domain}${a.url}]]></url>
+					<title><![CDATA[${a.title}]]></title>
+					<pubTime>${a.releaseDate}</pubTime>
+					<newsFrom><![CDATA[${a.originUrl!'易汇网'}]]></newsFrom>
+					   [#if a.typeImg??]
+				        <img><![CDATA[${site.domain}${a.typeImg!site.defImg}]]></img>
+          				[/#if]
+					<summary><![CDATA[${a.description!}]]></summary> 
+					</item>
+	          [/#list]
+          [/@cms_content_list]
+		</newsGroup>
+	[/#list] 
+[/@cms_channel_list]
+
+
+
+
+
+</document>

@@ -1,0 +1,119 @@
+<style type="text/css">
+.page{text-align:center;margin-top:10px;}
+.page a{width:37px;height:29px;display:inline-block;text-align:center;line-height:29px;border:1px solid #d4d4d4;margin:0px 5px;font-weight:bold;color:#929292;}
+.page a:hover{ text-decoration:none;}
+.page a.hover,.page a:hover{background-color:#2d65a2;color:#fff;}
+</style>
+<div  class="page" style="position: absolute;margin-left: 20%;bottom: 0;">
+[#assign p=tag_pagination/]
+[#if p.totalPage<20]
+[#if p.firstPage]
+[#else]
+	<a href="${hrefFormer}${hrefLatter}" class="a1"> &lt;&lt;</a>
+	<a href="${hrefFormer}[#if p.prePage gt 1]_${p.prePage}[/#if]${hrefLatter}" class="a1"> &lt; </a>
+[/#if]
+[#if pageNo-3 gt 1]
+	[#if p.totalPage gt pageNo+2]
+		[#list pageNo-3..pageNo+2 as i]
+			[#if i = pageNo]
+				<a class="hover">${i}</a>
+			[#else]
+				<a href="${hrefFormer}[#if i gt 1]_${i}[/#if]${hrefLatter}">${i}</a>
+			[/#if]
+		[/#list]
+	[#else]
+		[#list p.totalPage-4..p.totalPage as i]
+			[#if i = pageNo]
+				<a class="hover">${i}</a>
+			[#else]
+				<a href="${hrefFormer}[#if i gt 1]_${i}[/#if]${hrefLatter}">${i}</a>
+			[/#if]
+		[/#list]
+	[/#if]
+[#else]
+	[#if p.totalPage gt 5]
+		[#list 1..6 as i]
+			[#if i = pageNo]
+				<a class="hover">${i}</a>
+			[#else]
+				<a href="${hrefFormer}[#if i gt 1]_${i}[/#if]${hrefLatter}">${i}</a>
+			[/#if]
+		[/#list]
+	[#else]
+		[#list 1..p.totalPage as i]
+			[#if i = pageNo]
+			[#if i==1]
+				[#if p.lastPage]
+				
+				[#else]
+				<a class="hover">${i}</a>
+				[/#if]
+			[/#if]				
+			[#else]
+				<a href="${hrefFormer}[#if i gt 1]_${i}[/#if]${hrefLatter}">${i}</a>
+			[/#if]
+		[/#list]
+	[/#if]
+[/#if]
+[#if p.lastPage]
+[#else]
+	<a href="${hrefFormer+'_'+p.nextPage+hrefLatter}"> &gt; </a>
+	<a href="${hrefFormer+'_'+p.totalPage+hrefLatter}"> &gt;&gt; </a>
+[/#if]
+[#else]
+[#if p.firstPage]
+[#else]
+	<a href="${hrefFormer}${hrefLatter}" class="a1"> &lt;&lt;</a>
+	<a href="${hrefFormer}[#if p.prePage gt 1]_${p.prePage}[/#if]${hrefLatter}" class="a1"> &lt; </a>
+[/#if]
+[#if pageNo-3 gt 1]
+	[#if 20 gt pageNo+2]
+		[#list pageNo-3..pageNo+2 as i]
+			[#if i = pageNo]
+				<a class="hover">${i}</a>
+			[#else]
+				<a href="${hrefFormer}[#if i gt 1]_${i}[/#if]${hrefLatter}">${i}</a>
+			[/#if]
+		[/#list]
+	[#else]
+		[#list 20-4..20 as i]
+			[#if i = pageNo]
+				<a class="hover">${i}</a>
+			[#else]
+				<a href="${hrefFormer}[#if i gt 1]_${i}[/#if]${hrefLatter}">${i}</a>
+			[/#if]
+		[/#list]
+	[/#if]
+[#else]
+	[#if 20 gt 10]
+		[#list 1..6 as i]
+			[#if i = pageNo]
+				<a class="hover">${i}</a>
+			[#else]
+				<a href="${hrefFormer}[#if i gt 1]_${i}[/#if]${hrefLatter}">${i}</a>
+			[/#if]
+		[/#list]
+	[#else]
+		[#list 1..20 as i]
+			[#if i = pageNo]
+			[#if i==1]
+				[#if p.lastPage]
+				
+				[#else]
+				<a class="hover">${i}</a>
+				[/#if]
+			[/#if]				
+			[#else]
+				<a href="${hrefFormer}[#if i gt 1]_${i}[/#if]${hrefLatter}">${i}</a>
+			[/#if]
+		[/#list]
+	[/#if]
+[/#if]
+[#if p.lastPage]
+[#else]
+	<a href="${hrefFormer+'_'+p.nextPage+hrefLatter}"> &gt; </a>
+	<a href="${hrefFormer+'_'+20+hrefLatter}"> &gt;&gt; </a>
+[/#if]
+[/#if]
+<!-- <span class="total">共${p.totalPage}页</span> -->
+</div>

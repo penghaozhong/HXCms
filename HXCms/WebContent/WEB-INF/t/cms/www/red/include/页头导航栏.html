@@ -1,0 +1,36 @@
+<!-- 导航栏_begin 显示排序前5的栏目 -->
+<div class="menu" style="overflow: hidden;">
+
+	[@cms_channel_list] [#list tag_list as a]
+	 [#if a_index==0]
+	<ul style="width: 204px">
+	[#elseif a_index==1]
+	<ul style="width: 140px">
+	[#elseif a_index==2]
+	<ul style="width:78px">
+	[#elseif a_index==3]
+	<ul style="width: 140px">
+	[#elseif a_index==4]
+	<ul style="width: 204px">
+	[#elseif a_index==5]
+	<ul style="width:78px">
+	[#elseif a_index==6]
+	<ul style="width:78px;margin:0px;border:0px;">
+	[/#if]
+	[#if a_index<7]
+			<li>
+			<a href="${a.url}" target="_blank" [#if channel??&&channel.id==a.id]
+				class="selected"[/#if]>[#if a.attr.channelColor??]<strong style="color: ${a.attr.channelColor}">${a.name}</strong>[#else]<strong>${a.name}</strong>[/#if]</a>
+			</li>
+
+		[@cms_channel_list parentId=a.id] [#list tag_list as b]
+		<li>
+			<a href="${b.url}" target="_blank" [#if channel??&&channel.id==b.id]
+				class="selected"[/#if]>[#if b.attr.channelColor??][#if b.attr.strong??]<strong style="color: ${b.attr.channelColor}">${b.name}</strong>[#else]<span style="color: ${b.attr.channelColor}">${b.name}</span>[/#if][#else][#if b.attr.strong??]<strong>${b.name}</strong>[#else]<span>${b.name}</span>[/#if][/#if]</a>
+		</li>
+		[/#list] [/@cms_channel_list]
+	</ul>
+	[/#if]
+[/#list] [/@cms_channel_list]
+</div>
+<!-- 导航栏_end -->

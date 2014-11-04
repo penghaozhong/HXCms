@@ -1,0 +1,32 @@
+
+[#--
+栏目翻页样式
+
+pageClass: 翻页DIV class
+pageStyle: 翻页DIV style
+--]
+[#assign p=tag_pagination/]
+
+<div  class="page" >
+<!-- <ul style="border-top:1px dashed #efefef; " ></ul> -->
+<div style="margin-top: 5px">
+[#if p.firstPage]<a disabled="disabled" class="a1">&lt;</a> [#t/]
+[#else]<a href="${hrefFormer}[#if p.prePage gt 1]_${p.prePage}[/#if]${hrefLatter}" class="a1">&lt;</a>[#t/]
+[/#if]
+
+[#list 1..p.totalPage as i]
+ [#if p.pageNo==i]
+<a href="${hrefFormer}_${i}${hrefLatter}" class="hover">${i}</a>
+[#else]
+<a href="${hrefFormer}_${i}${hrefLatter}" >${i}</a>
+[/#if]
+[/#list]
+[#if p.lastPage]&nbsp;<a disabled="disabled">&gt;</a> 
+[#else]&nbsp;<a href="${hrefFormer}_${p.nextPage}${hrefLatter}">&gt;</a>
+[/#if]
+[#if p.lastPage] <a disabled="disabled" class="a1">&gt;&gt;</a>
+[#else] <a href="${hrefFormer}_${p.totalPage}${hrefLatter}" class="a1">&gt;&gt;</a>
+[/#if]
+</div>
+
+</div>

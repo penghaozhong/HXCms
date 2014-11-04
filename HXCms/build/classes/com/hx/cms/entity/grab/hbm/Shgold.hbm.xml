@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.hx.cms.entity.grab">
+	<class name="Shgold" table="ie_shgold">
+ 		<cache usage="read-write"/>
+		<id name="id" type="java.lang.Integer" column="id">
+			<generator class="increment" />
+		</id>
+	 	<property name="variety" column="variety" type="string" not-null="false" length="100"/>
+	 	<property name="latestpri" column="latestpri" type="string" not-null="false" length="100"/>
+	 	<property name="openpri" column="openpri" type="string" not-null="false" length="100"/>
+	 	<property name="maxpri" column="maxpri" type="string" not-null="false" length="100"/>
+	 	<property name="minpri" column="minpri" type="string" not-null="false" length="100"/>
+	 	<property name="limit" column="limits" type="string" not-null="false" length="100"/>
+	 	<property name="yespri" column="yespri" type="string" not-null="false" length="100"/>
+	 	<property name="totalvol" column="totalvol" type="string" not-null="false" length="100"/>
+	 	<property name="time" column="time" type="string" not-null="false" length="100"/> 
+	 	<property name="externaldate" column="externaldate" type="string" not-null="false" length="100" />
+	</class>
+</hibernate-mapping>

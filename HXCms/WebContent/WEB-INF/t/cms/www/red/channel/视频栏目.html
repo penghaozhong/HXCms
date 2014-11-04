@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>${channel.title!channel.name} - ${site.name}</title>
+ <link rel="shortcut icon" href="${resSys}/favicon.ico" />
+<meta http-equiv="keywords" content="${channel.keywords!}"/>
+<meta http-equiv="description" content="${channel.description!}"/>
+<link rel="stylesheet" type="text/css" href="/${res}/css/shipin.css"> 
+</head>
+<body>
+	<div class="header">
+		<div style="font-family: '微软雅黑';" class="header">
+			<div class="topbar">
+				<a href="/" target="_blank">易汇首页</a> 
+				[@cms_channel_list parentId='19' displayOnly='0'] 
+				[#list tag_list as a] | 
+					<a href="${a.url}" target="_blank">${a.name}</a> 
+				[/#list]
+				[/@cms_channel_list]
+			</div>
+		</div>
+	</div>
+	<div class="guanggtu"></div>
+	<div class="clear"></div>
+	<div class="dashi">
+		<div class="xwleft_list">
+			<table
+				style="WIDTH: 740px; height: 40px; text-align: center; background: #ffffff; border-top: #e1e1e1 1px solid; border-bottom: #333333 2px solid; border-left: #e1e1e1 1px solid; border-right: #e1e1e1 1px solid;">
+				<tbody>
+					<tr>
+						<td style="width: 200px; text-align: left; line-height: 40px;">
+						<span style="font-family: 微软雅黑; COLOR: #c40000; font-size: 18px; font-weight: 700;"></span>
+						&nbsp;&nbsp;&nbsp; <a href="#">
+						[@cms_channel id=channel.id] 
+						<span style="font-family: 微软雅黑; COLOR: #07336a; font-size: 24px; font-weight: 700;">${tag_bean.name}</span></a><a> </a></td> 
+						[/@cms_channel]
+						<td style="width: 80px; text-align: right; padding-right: 10px; line-height: 40px;">&nbsp;</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="sc_list">
+				<ul>
+					[@cms_content_page count='9' titLen='15' orderBy='2' channelId=channel.id channelOption='1' sysPage='1'] 
+					[#list tag_pagination.list as a]
+					<li>
+						<p>
+							<a href="${a.url}">
+								<img src="${a.typeImg!site.defImg}">
+							</a>
+						</p>
+						<p style="font-family: '微软雅黑';" class="www">
+							<a href="${a.url}"> [@text_cut s=a.title len=titLen append='...'/] </a>
+						</p>
+					</li>
+					[/#list]
+					[/@cms_content_page]
+				</ul>
+				<div style="clear: both"></div>
+			</div>
+		</div>
+		<div class="right_left_ship">
+			<div class="shipin_right">
+				<p class="phb_top" style="font-family: '微软雅黑';">查看记录</p>
+				<div style="clear: both"></div>
+				<ul class="sp_phb">
+					[@cms_content_list count='10' titLen='18' typeId='2' channelOption='1' channelId=channel.id] 
+					[#list tag_list as b] 
+					[#if b_index = 0]
+					<div style="position: relative">
+						<a href="${b.url}"> 
+						<img width="254" height="100" src="${b.typeImg!site.defImg}"></a>
+						<div class="paih_jilu" style="">[@text_cut s=b.stit len=titLen append="..."/]</div>
+					</div>
+					[#else]
+					<li><span>${b_index+1}</span>
+					<a href="${b.url}">[@text_cut s=b.stit len=titLen append="..."/]</a></li>
+				    [/#if][/#list] [/@cms_content_list]
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="bottom">
+		<p style="color: #fff; font-size: 12px;">易汇国际(JL INTERNATIONAL HOLDINGS CORP.) 版权所有2000-2013。</p>
+	</div>
+
+</body>
+</html>
+</html>

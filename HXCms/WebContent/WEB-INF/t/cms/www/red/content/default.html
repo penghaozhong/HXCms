@@ -1,0 +1,281 @@
+<!DOCTYPE HTML>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${title} - ${channel.title!channel.name} - ${site.name}</title>
+<meta http-equiv="keywords" content="${channel.keywords!}"/>
+<meta http-equiv="description" content="${channel.description!}"/>
+ <link rel="shortcut icon" href="${resSys}/favicon.ico" />
+<link href="/${res}/css/pub-css.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/css/content/wzy.css" type="text/css" rel="stylesheet" />
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<script src="/${res}/js/common.js" type="text/javascript"></script>
+<script src="/${res}/js/hx_news_ui.js" type="text/javascript"></script>
+<link href="/${res}/css/content/pl.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/css/content/jigou.css" type="text/css" rel="stylesheet" />
+<link href="/${res}/css/header.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">
+$(function() {
+  Cms.attachment("${base}","${content.id}","${content.attachments?size}","attach");
+  Cms.viewCount("${base}","${content.id}");
+  Cms.siteFlow("${base}",location.href, document.referrer);
+});
+
+function setTab(name,cursel,n){
+	for(i=1;i<=n;i++){
+	var menu=document.getElementById(name+i);
+	var con=document.getElementById("con_"+name+"_"+i);
+	menu.className=i==cursel?"hover":"";
+	con.style.display=i==cursel?"block":"none";
+	    }
+}
+</script>
+<head>
+ [#include "../include/页头顶栏.html"/]
+<div class="main">
+	[#include "../include/标志和搜索.html"/] [#include "../include/页头导航栏.html"/]
+	<div class="wrapper">
+<div style="height:15px"></div>  <!--新加 据顶端公共部分距离-->
+  <div class="main_left" id="main_left">
+ [#include "../include/当前位置.html"/]
+    <div class="headline">
+      <span class="headline_top">${content.title}</span>
+      <div>
+        <span>${content.releaseDate} </span>
+        <a href="">来源：${content.origin!'易汇网 www.hx.com'}</a>
+      </div>
+      <p>
+        截止发稿时
+        <a target="_blank" href="${base}/rmb/index.htm">人民币牌价</a>
+       ${content.txt1!}
+      </p>
+    </div>
+    <div class="content">
+     ${txt!}
+    </div>
+    <p class="more">
+      更多信息请点击:&nbsp;
+      					[@cms_tag_list count='4' channelId =channel.id]
+							[#list tag_list as tag]
+							<a href="${base}/tag/${tag.id}.jspx" target="_blank">${tag.name}</a>
+							[#if tag_has_next] &nbsp; [/#if]
+							[/#list]
+						[/@cms_tag_list]
+    </p>
+    <div class="remark">
+      <p>
+        本文来源：${content.origin!'易汇网 www.hx.com'} 责任编辑：${content.author!'本站编辑'}
+      </p>
+      <img src="/${res}/img/hx/content/xtb.png" alt=""/>
+    </div>
+    [#include "../include/分享到.html"/]
+
+    <div class="news">
+      <div class="news_top">
+        <span class="title1">相关新闻</span>
+        <span class="bg"></span>
+      </div>
+      <div class="news_main">
+        <ul>
+         [@cms_content_list count='6' titLen='17' typeId='2'  orderBy='8' channelId=channel.id]
+							    [#list tag_list as a]
+						            <li>
+							            <a href="${a.url}" class="news_pic"><img src="${a.typeImg!site.defImg}" /></a>
+							            <a href="${a.url}" class="news_font">
+							            <span class="black24">[@text_cut s=a.stit len=titLen append=""/]</span><br/>
+							            <span class="black78">[@text_cut s=a.stit len=titLen append=""/]</span>
+							            </a>
+							          </li>
+							    [/#list]
+							 [/@cms_content_list]
+        </ul>
+      </div>
+    </div>
+    <div class="newhot">
+      <div class="news_top">
+        <span class="title1">最新热帖</span>
+        <span class="bg1"></span>
+        <a href="http://www.talkforex.com/">更多&gt;&gt;</a>
+      </div>
+      <div class="newhot_main">
+        <ul>
+         <script type="text/javascript" src="http://www.talkforex.com/api_new.php?mod=js&bid=419"></script>
+        </ul>
+      </div>
+    </div>
+    
+           <!--网友评论_Begin-->
+        [#if channel.commentControl!=2]
+       		 [#include "inc_comment_input.html"/]
+        [/#if]
+   	<!--网友评论_End-->
+    
+  </div>
+  <div class="main_right">
+    <div>
+    <!-- 广告1 -->
+				<script type="text/javascript" src="${base}/adspace.jspx?id=60"></script>
+    </div>
+    <div id="hot">
+    <div class="tjwz">
+      <div class="tjwz_top">
+        推荐文章
+      </div>
+      <div class="tjwz_main">
+        <ul>
+         [@cms_content_list count='3' titLen='17'  recommend='1' typeId='2'  channelId=channel.id] 
+								     [#list tag_list as b]
+										 <li>
+							           <div class="tjwz_img"> <a href="${b.url}" ><img src="${b.typeImg!site.defImg}"/></a></div>
+							            <div class="tjwz_font">
+							              <a href="${b.url}"><span class="black33">[@text_cut s=b.stit len=titLen append=""/]</span></a>
+							              <span class="black87">责任编辑：${b.author!'本站编辑'}</span>
+							              <span class="black87">${b.releaseDate}</span>
+							            </div>
+							          </li>
+									 [/#list] 
+								[/@cms_content_list]
+        </ul>
+      </div>
+    </div>
+    </div>
+    <div  id="sticker" >
+    <div class="bqy">
+      <div class="tjwz_top">
+        标签云
+      </div>
+  [#include "../include/标签云.html"/]
+    </div>
+<script type="text/javascript" src="${base}/adspace.jspx?id=61"></script>
+    <div class="hot">
+      <div class="hot_top">
+        <ul>
+          <li  id="tabw1" class="hover" onMouseOver="setTab('tabw',1,3)">今日点击榜</li>
+          <li id="tabw2" onMouseOver="setTab('tabw',2,3)">本周点击榜</li>
+          <li id="tabw3" onMouseOver="setTab('tabw',3,3)">本月点击榜</li>
+        </ul>
+      </div>
+      <div class="hot_main" id="con_tabw_1">
+        <ul>
+          [@cms_content_list count='10' titLen='17'  orderBy ='6'  channelId=channel.id] 
+		     [#list tag_list as b]
+			     <li>
+			     	[#if b_index < 3]
+						 <span class="q3">${b_index+1}</span>
+					[#else]
+						<span class="h3">${b_index+1}</span>
+					[/#if]
+			      <a href="${b.url}">[@text_cut s=b.stit len=titLen append=""/]</a>
+		          </li>
+			 [/#list] 
+		[/@cms_content_list]
+        </ul>
+      </div>
+       <div class="hot_main" id="con_tabw_2" style="display: none;" >
+        <ul>
+         [@cms_content_list count='10' titLen='17'  orderBy ='7'  channelId=channel.id] 
+		     [#list tag_list as b]
+		        <li>
+			     	[#if b_index < 3]
+						 <span class="q3">${b_index+1}</span>
+					[#else]
+						<span class="h3">${b_index+1}</span>
+					[/#if]
+	            <a href="${b.url}">[@text_cut s=b.stit len=titLen append=""/]</a>
+	          </li>
+			 [/#list] 
+		[/@cms_content_list]
+        </ul>
+      </div>
+       <div class="hot_main" id="con_tabw_3" style="display: none;" >
+        <ul>
+         [@cms_content_list count='10' titLen='17'  orderBy ='8'  channelId=channel.id] 
+		     [#list tag_list as b]
+		       <li>
+			     	[#if b_index < 3]
+						 <span class="q3">${b_index+1}</span>
+					[#else]
+						<span class="h3">${b_index+1}</span>
+					[/#if]
+	            <a href="${b.url}">[@text_cut s=b.stit len=titLen append=""/]</a>
+	          </li>
+			 [/#list] 
+		[/@cms_content_list]
+        </ul>
+      </div>
+    </div>
+    <div class="tjsp">
+      <div class="tjsp_top">
+        推荐视频
+      </div>
+      <div class="tjsp_main">
+        <ul>
+        [@cms_content_list count='2' titLen='20' channelOption='1'  recommend='1'  channelId='19'] 
+		     [#list tag_list as b]
+				 <li>
+		            <div class="tjsp_img"><img src="${b.typeImg!site.defImg}" alt=""/></div>
+		            <div class="tjsp_font">
+		              <a href="">[@text_cut s=b.stit len=titLen append=""/]</a>
+		            </div>
+         		 </li>
+			 [/#list] 
+		[/@cms_content_list]
+        </ul>
+      </div>
+    </div>
+    <div class="calendar">
+      [#include "../include/日历small.html"/]
+    </div>
+    <!--此暂时放图片-->
+    <div class="others">
+      <ul>
+    		  [@cms_topic_list count='2' recommend='1' descLen='35' append='...']
+	                [#list tag_list as t]
+	                  <li>
+			          <div class="other_img1"><img src="${t.titleImg!site.defImg}" alt=""/></div>
+			          <a href="${base}/topic/${t.id}.jspx" class="other_font1">《 ${t.name}》<br/>
+			           [@text_cut s=t.description len=descLen append=append/]</a>
+			        </li>
+	                [/#list]
+                [/@cms_topic_list]
+      </ul>
+    </div>
+    
+    <div class="lk">
+      <ul>
+      		[@cms_topic_list count='6' descLen='35' append='...']
+	                [#list tag_list as t]
+	                	[#if t_index > 3]
+	                		 <li>
+					          <a href="${base}/topic/${t.id}.jspx"> ${t.name}</a>
+					        </li>
+	                	[/#if]
+	                [/#list]
+                [/@cms_topic_list]
+      
+       
+      </ul>
+    </div>
+    
+   <!-- 广告3 -->
+		<div>
+		<script type="text/javascript" src="${base}/adspace.jspx?id=62"></script>
+		</div>
+		
+		</div>
+  </div>
+</div>
+
+	<div class="bk10"></div>
+</div>
+<div class="footer">
+	<div class="f_link">
+		[#include "../include/页脚关键词.html"/]
+		<div class="f_link03">[#include "../include/页脚风险提示.html"/]</div>
+	</div>
+</div>
+[#include "../include/页脚信息栏.html"/]
+</body>
+</html>
+

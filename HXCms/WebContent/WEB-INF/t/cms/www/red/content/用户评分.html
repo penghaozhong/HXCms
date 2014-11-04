@@ -1,0 +1,107 @@
+
+<form id="yhpf" action="${base}/JysYhpf/o_save.jspx" method="post">
+	<table cellspacing="0" cellpadding="0" width="100%" border="0"
+		class="y_table">
+		<tbody>
+			<tr style="background: #abd0f9">
+				<td height="28px;">客服解决问题</td>
+				<td><input type="radio" value="1" name="khjjwt" checked="checked">1天之内</td>
+				<td><input type="radio" value="0.75" name="khjjwt">1-3天</td>
+				<td><input type="radio" value="0.5"  name="khjjwt">3-5天</td>
+				<td><input type="radio" value="0.25" name="khjjwt">5天以上</td>
+				<td><input type="radio" value="0" name="khjjwt">无回复</td>
+			</tr>
+			<tr style="background: #d2e7fc">
+				<td height="28px;">客户入金时间：</td>
+				<td><input type="radio" value="0.5" name="khrjsj" checked="checked">1天之内</td>
+				<td><input type="radio" value="0.3"	name="khrjsj">1-3天</td>
+				<td><input type="radio" value="0.2" name="khrjsj">3-5天</td>
+				<td><input type="radio" value="0.1" name="khrjsj">5天以上</td>
+				<td><input type="radio" value="0" name="khrjsj">不给出金</td>
+			</tr>
+			<tr style="background: #abd0f9">
+				<td height="28px;">客户出金时间：</td>
+				<td><input type="radio" value="0.5" checked="checked" name="khcjsj">1天之内</td>
+				<td><input type="radio" value="0.3" name="khcjsj">1-3天</td>
+				<td><input type="radio" value="0.2" name="khcjsj">3-5天</td>
+				<td><input type="radio" value="0.1" name="khcjsj">5天以上</td>
+				<td><input type="radio" value="0" name="khcjsj">不给出金</td>
+			</tr>
+			<tr style="background: #d2e7fc">
+				<td height="28px;">平台使用状态：</td>
+				<td colspan="2"><input type="radio" checked="checked" value="1" name="ptsyzt">不断线、不滑点</td>
+				<td colspan="2"><input type="radio" value="0.75" name="ptsyzt">滑点、不断线</td>
+				<td><input type="radio" value="0.5" name="ptsyzt">断线、不滑点</td>
+			</tr>
+			<tr style="background: #d2e7fc">
+				<td height="28px;"></td>
+				<td colspan="2"><input type="radio" value="0.25" name="ptsyzt">断线、滑点</td>
+				<td colspan="3"><input type="radio" value="0" name="ptsyzt">找不到服务器</td>
+			</tr>
+			<tr style="background: #abd0f9">
+				<td height="28px;">交易商产品研发：</td>
+				<td colspan="2"><input type="radio" checked="checked" value="1"
+					name="jyscpyf">跟单、提醒、EA</td>
+				<td colspan="2"><input type="radio" value="0.75" name="jyscpyf">跟单、EA</td>
+				<td><input type="radio" value="0.5" name="jyscpyf">提醒、EA</td>
+			</tr>
+			<tr style="background: #abd0f9">
+				<td height="28px;"></td>
+				<td colspan="2"><input type="radio" value="0.5" name="jyscpyf">跟单、提醒</td>
+				<td colspan="3"><input type="radio" value="0" name="jyscpyf">都无</td>
+			</tr>
+			<tr style="background: #d2e7fc">
+				<td height="28px;">交易商培训沙龙：</td>
+				<td colspan="2"><input type="radio" checked="checked" value="1" name="jyspxsl">研报、培训、沙龙</td>
+				<td colspan="2"><input type="radio"  value="0.75" name="jyspxsl">培训、沙龙</td>
+				<td><input type="radio" value="0.5" name="jyspxsl">研报、沙龙</td>
+			</tr>
+			<tr style="background: #d2e7fc">
+				<td height="28px;"></td>
+				<td colspan="2"><input type="radio" value="0.25" name="jyspxsl">研报、培训</td>
+				<td colspan="3"><input type="radio" value="0" name="jyspxsl">都无</td>
+			</tr>
+			<tr style="background: #abd0f9">
+				<td height="28px;">新客户开户时间：</td>
+				<td><input type="radio" value="0" name="xkhkhsj">1天之内</td>
+				<td><input type="radio" value="-0.75" name="xkhkhsj">1-3天</td>
+				<td><input type="radio" value="-0.5" name="xkhkhsj">3-5天</td>
+				<td><input type="radio" value="-0.25" name="xkhkhsj">5天以上</td>
+				<td><input type="radio" value="-1" name="xkhkhsj">无回复金</td>
+			</tr>
+			<tr>
+				<td colspan="5"></td>
+				<td height="28px;"><input class="button" type="submit"
+					value="提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交"></td>
+			</tr>
+		</tbody>
+	</table>
+</form>
+
+
+<script type="text/javascript">
+
+		Cms.comment(function(data) {
+			if (data) {
+				if(data.ypl){
+					alert("不能重复评论");
+					return;
+				}
+				
+				alert("评论成功!");
+					var divImg = $(".y_p11")[1];
+					$(divImg).empty();
+					$("#tbImg").empty();
+				for (var i = 0; i < data.zhpf; i++) {
+					$(divImg).append("<img src='/${res}/img/jsjys/w_xing_06.png' />");
+				}
+				for (var j = 0; j < data.yhpf; j++) {
+					$("#tbImg").append("<img src='/${res}/img/jsjys/w_xing_06.png' />");
+				}
+			} else {
+				alert("请登录!");
+			}
+
+		}, "yhpf");
+	
+</script>

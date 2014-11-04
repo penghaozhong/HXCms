@@ -1,0 +1,35 @@
+ <div class="f_link02">
+			<div class="Menubox">
+				<ul>
+				  <li id="two1" onmouseover="setTab('two',1,2)"  class="hover">合作链接</li>
+          <li id="two2" onmouseover="setTab('two',2,2)" >友情链接</li>
+				</ul>
+			</div> 
+	        <div class="Contentbox" style="background-color:#fff;">
+				<div id="con_two_1" style="display: block;">
+ 					<ul>
+ 						 [@cms_friendlink_list ctgId='1']
+	        			 [#list tag_list as link]
+	        			 <li>
+	        			 	<a href="${link.domain}" onclick="$.get('${base}/friendlink_view.jspx?id=${link.id}')" target="_blank">${link.name}</a>
+	        			 </li>
+	        			 [/#list]
+	       			     [/@cms_friendlink_list]
+ 					</ul>
+ 				</div>
+ 				<div id="con_two_2" style="display: none;">
+ 					<ul>
+ 					 	 [@cms_friendlink_list ctgId='3']
+	        			 [#list tag_list as link]
+ 						<li>
+ 							<a href="${link.domain}" onclick="$.get('${base}/friendlink_view.jspx?id=${link.id}')" target="_blank">${link.name}</a>		
+ 						</li>
+ 						 [/#list]
+	       			     [/@cms_friendlink_list]
+ 					</ul>
+ 				</div>
+			</div>
+		</div>
+
+		
+

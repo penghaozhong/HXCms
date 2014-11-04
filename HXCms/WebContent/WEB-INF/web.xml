@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" id="WebApp_ID" version="2.4">
+  <display-name>HXCms</display-name>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+			/WEB-INF/config/application-context.xml
+			/WEB-INF/config/cache-context.xml
+			/WEB-INF/config/captcha-context.xml
+			/WEB-INF/config/hxcore-context.xml
+			/WEB-INF/config/hx-context.xml
+			/WEB-INF/config/quartz-task.xml
+			<!-- WebService -->
+			/WEB-INF/config/application-webserviceclient.xml
+		</param-value>
+  </context-param>
+  	
+  	<!-- 用于单点退出，该过滤器用于实现单点登出功能，可选配置 -->
+	<listener>
+		<listener-class>org.jasig.cas.client.session.SingleSignOutHttpSessionListener</listener-class>
+	</listener>   
+   <filter>
+   <filter-name>CAS Authentication Filter</filter-name>
+   <filter-class>
+    org.jasig.cas.client.authentication.AuthenticationFilter
+   </filter-class>
+   <init-param>
+    <param-name>casServerLoginUrl</param-name>
+    <param-value>
+    http://cas.hx.com/cas
+    </param-value>
+   </init-param>
+   <init-param>
+    <param-name>renew</param-name>
+    <param-value>false</param-value>
+   </init-param>
+   <init-param>
+    <param-name>gateway</param-name>
+    <param-value>false</param-value>
+   </init-param>
+   <init-param>
+    <param-name>serverName</param-name>
+    <!-- 服务器版本 -->
+    <!-- <param-value>http://www.hx.com</param-value> -->
+    <!-- 本地测试 -->
+    <param-value>http://localhost:8080</param-value>
+   </init-param>
+</filter>
+   <filter>
+   <filter-name>CAS HttpServletRequest Wrapper Filter</filter-name>
+   <filter-class>
+    org.jasig.cas.client.util.HttpServletRequestWrapperFilter
+   </filter-class>
+</filter>
+<filter-mapping>
+   <filter-name>CAS Authentication Filter</filter-name>
+   <url-pattern>/member/*</url-pattern>
+</filter-mapping>
+
+<filter-mapping>
+   <filter-name>CAS HttpServletRequest Wrapper Filter</filter-name>
+   <url-pattern>/member/*</url-pattern>
+</filter-mapping>
+
+<filter> 
+   <filter-name>CAS Validation Filter</filter-name>
+   <filter-class>
+    org.jasig.cas.client.validation.Cas20ProxyReceivingTicketValidationFilter
+   </filter-class>
+   <init-param>
+    <param-name>casServerUrlPrefix</param-name>
+    <param-value>http://cas.hx.com/cas</param-value>
+   </init-param>
+   <init-param>
+    <param-name>serverName</param-name>
+   <!-- 服务器版本 -->
+    <!-- <param-value>http://www.hx.com</param-value> -->
+    <!-- 本地测试 -->
+    <param-value>http://localhost:8080</param-value>
+   </init-param>
+   <init-param>
+    <param-name>useSession</param-name>
+    <param-value>true</param-value>
+   </init-param>
+   <init-param>
+    <param-name>redirectAfterValidation</param-name>
+    <param-value>true</param-value>
+   </init-param>
+</filter>
+
+<filter-mapping>
+   <filter-name>CAS Validation Filter</filter-name>
+   <url-pattern>/member/*</url-pattern>
+</filter-mapping>
+ 
+  <filter>
+    <filter-name>processTime</filter-name>
+    <filter-class>com.hx.common.web.ProcessTimeFilter</filter-class>
+  </filter>
+  <filter>
+    <filter-name>encoding</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter>
+    <filter-name>osivFilter</filter-name>
+    <filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+  </filter>
+  <filter>
+    <filter-name>XssFilter</filter-name>
+    <filter-class>com.hx.common.web.XssFilter</filter-class>
+    <init-param>
+      <param-name>SplitChar</param-name>
+      <param-value>@</param-value>
+    </init-param>
+    <init-param>
+      <param-name>FilterChar</param-name>
+      <param-value>'@&quot;@\@#@:@%@></param-value>
+    </init-param>
+    <init-param>
+      <param-name>ReplaceChar</param-name>
+      <param-value>\'@\&quot;@＼@＃@：@％@></param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>processTime</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>encoding</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>osivFilter</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>processTime</filter-name>
+    <url-pattern>*.jspx</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>encoding</filter-name>
+    <url-pattern>*.jspx</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>osivFilter</filter-name>
+    <url-pattern>*.jspx</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>processTime</filter-name>
+    <url-pattern>*.jhtml</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>encoding</filter-name>
+    <url-pattern>*.jhtml</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>osivFilter</filter-name>
+    <url-pattern>*.jhtml</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>processTime</filter-name>
+    <url-pattern>*.htm</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>encoding</filter-name>
+    <url-pattern>*.htm</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>osivFilter</filter-name>
+    <url-pattern>*.htm</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>processTime</filter-name>
+    <url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>encoding</filter-name>
+    <url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>osivFilter</filter-name>
+    <url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>osivFilter</filter-name>
+    <url-pattern>/</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>XssFilter</filter-name>
+    <url-pattern>*.jspx</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <servlet-name>ieforexAdmin</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/config/hx-servlet-admin.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>ieforexFront</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/config/hx-servlet-front.xml</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>Jcaptcha</servlet-name>
+    <servlet-class>com.hx.common.captcha.JcaptchaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Jcaptcha</servlet-name>
+    <url-pattern>/captcha.svl</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DbFile</servlet-name>
+    <servlet-class>com.hx.core.action.front.DbFileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ieforexAdmin</servlet-name>
+    <url-pattern>/admin/hx/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ieforexFront</servlet-name>
+    <url-pattern>*.jhtml</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ieforexFront</servlet-name>
+    <url-pattern>*.jspx</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ieforexFront</servlet-name>
+    <url-pattern>*.jsp</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ieforexFront</servlet-name>
+    <url-pattern>*.htm</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DbFile</servlet-name>
+    <url-pattern>/dbfile.svl</url-pattern>
+  </servlet-mapping>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+  </listener>
+  <session-config>
+    <session-timeout>20</session-timeout>
+  </session-config>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.shtml</welcome-file>
+    <welcome-file>index.jhtml</welcome-file>
+  </welcome-file-list>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/WEB-INF/error/403.html</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/WEB-INF/error/ts.html</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/404.html</location>
+  </error-page>
+  <mime-mapping>
+    <extension>rar</extension>
+    <mime-type>application/zip</mime-type>
+  </mime-mapping>
+  <mime-mapping>
+    <extension>doc</extension>
+    <mime-type>application/zip</mime-type>
+  </mime-mapping>
+  <mime-mapping>
+    <extension>ppt</extension>
+    <mime-type>application/zip</mime-type>
+  </mime-mapping>
+  <mime-mapping>
+    <extension>txt</extension>
+    <mime-type>application/zip</mime-type>
+  </mime-mapping>
+  <mime-mapping>
+    <extension>pdf</extension>
+    <mime-type>application/zip</mime-type>
+  </mime-mapping>
+  <mime-mapping>
+    <extension>xls</extension>
+    <mime-type>application/zip</mime-type>
+  </mime-mapping>
+  
+  <mime-mapping>
+    <extension>wps</extension>
+    <mime-type>application/zip</mime-type>
+  </mime-mapping>
+ 
+  
+	<!-- Web Service -->
+  <servlet>
+    <servlet-name>CXFService</servlet-name>
+    <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+  </servlet>
+  
+  	<servlet-mapping>
+		<servlet-name>CXFService</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+</web-app>

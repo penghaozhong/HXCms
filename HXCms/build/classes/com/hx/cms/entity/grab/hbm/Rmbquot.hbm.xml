@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.hx.cms.entity.grab">
+	<class name="Rmbquot" table="ie_rbmquot">
+ 		<cache usage="read-write"/>
+		<id name="id" type="java.lang.Integer" column="id">
+			<generator class="increment" />
+		</id>
+	 	<property name="name" column="name" type="string" not-null="false" length="100"/>
+	 	<property name="fBuyPri" column="fBuyPri" type="string" not-null="false" length="100"/>
+	 	<property name="MBuyPri" column="mBuyPri" type="string" not-null="false" length="100"/>
+	 	<property name="fSellPri" column="fSellPri" type="string" not-null="false" length="100"/>
+	 	<property name="MSellPri" column="mSellPri" type="string" not-null="false" length="100"/>
+	 	<property name="bankConversionPri" column="bankConversionPri" type="string" not-null="false" length="100"/>
+	 	<property name="date" column="date" type="string" not-null="false" length="100"/>
+	 	<property name="time" column="time" type="string" not-null="false" length="100"/> 
+	 	<property name="externaldate" column="externaldate" type="string" not-null="false" length="100" />
+	</class>
+</hibernate-mapping>

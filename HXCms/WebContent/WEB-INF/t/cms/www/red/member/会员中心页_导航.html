@@ -1,0 +1,28 @@
+<div class="mc_left">
+     	  <div class="mc_left_top">
+          	   <div class="mc-photo">
+          	   [#if user.userImg??]
+	          	   	[#if user.userImg!=""]
+	               		<img src="${user.userImg!}" />
+	               [#else]
+	               		<img src="/${res}/img/member/nophoto.gif"/>
+	               	 [/#if]
+               [#else]
+               <img src="/${res}/img/member/nophoto.gif"/>
+               [/#if]
+               </div> 
+               <p>${user.username!}</p> 
+          </div>
+          <div class="mc-left-zl">个人资料</div>
+          <ul class="nan_mu_bottom">
+          	  <li><a href="${base}/member/index.jspx">用户信息</a></li>
+              <li><a href="pwd.jspx">修改密码</a></li>
+              <li><h3 class="tg">投稿管理</h3></li>
+               <li><a href="contribute_list.jspx">稿件列表</a></li>
+              <li><a href="contribute_add.jspx">发布稿件</a></li>
+              <li><h3 class="tg">日历管理</h3></li>
+               <li><a href="calendar.jspx">日历</a></li>
+               <li><h3 class="tg"><a href="${base}/logout.jspx">退出登录</a></h3></li>
+          </ul>
+     </div>
+

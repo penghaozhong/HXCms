@@ -1,0 +1,3 @@
+[#if user??]欢迎您:${user.username} ${user.group.name}|<a href="http://www.hx.com/member/index.jspx">个人中心</a>|<a href="${base}/logout.jspx">退出登录</a>[#else]
+<a class="a01" style="margin-right: 5px;" href="http://cas.hx.com/cas/login?service=http://www.hx.com/member/login.jspx">登录</a><a href="${base}/register.jspx">注册</a>[/#if]
+     

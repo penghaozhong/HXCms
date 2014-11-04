@@ -1,0 +1,160 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<title>hx</title>
+<link rel="stylesheet" type="text/css"
+	href="http://shequ.talkforex.com/statics/css/news/shequ_index.css">
+<script src="http://shequ.talkforex.com/statics/js/news/jquery.min.js"
+	type="text/javascript"></script>
+<script src="http://shequ.talkforex.com/statics/js/news/jquery.pack.js"
+	type="text/javascript"></script>
+<script
+	src="http://shequ.talkforex.com/statics/js/news/jquery.SuperSlide.js"
+	type="text/javascript"></script>
+</head>
+<body onload="time()">
+	<div style="background: #FFF" class="shu_center_top1">
+		<div style="background: #FFF; box-shadow: 0px 2px 10px 0px #c9c9c9;"
+			class="sj_cenleft1">
+			<div>
+				<div class="jdt">
+					<div class="msn-focus">
+						<div class="bd">
+							<ul>
+								[@cms_content_list count='8' orderBy='4' typeId='3' titLen='18'
+								channelOption='1' channelId='1'] [#list tag_list as a]
+								<li style="display: none;"><a target="_blank"
+									href="${a.url}"><img src="${a.typeImg!site.defImg}"></a>
+									<p>
+										<i> </i> <a target="_blank" style="color: #FFF"
+											href="${a.url}"> [@text_cut s=a.title len=titLen /]</a>
+									</p></li> [/#list] [/@cms_content_list]
+							</ul>
+							<a href="javascript:void(0)" class="prev"></a><a
+								href="javascript:void(0)" class="next"></a>
+						</div>
+					</div>
+					<script type="text/javascript">jQuery(".msn-focus .bd").hover(function(){ jQuery(this).addClass("bdOn") },function(){ jQuery(this).removeClass("bdOn") });jQuery(".msn-focus").slide({ mainCell:".bd ul",delayTime:500,triggerTime:0,autoPlay:true });</script>
+				</div>
+				<div style="background: #FFF" class="jdxw">
+					<p class="sj_top">
+						<span style="font-family: '微软雅黑', Verdana;">新闻</span> <a
+							target="_blank" href="http://www.hx.com">更多&gt;&gt;</a>
+					</p>
+					<div class="jdxw_top">
+					[@cms_content_list orderBy='4' count='1' typeId="4"] [#list
+						tag_list as a]
+						<p class="bt">						
+							<strong style="color: #02285b"> <a target="_blank"
+								href="${a.url}">${a.title} </a>
+							</strong>
+						</p>
+						<p class="nr">
+							&#12288;&#12288;[@text_cut s=a.desc len='90' append="..."/]<a
+								target="_blank"
+								href="${a.url}">
+								&lt;详细&gt; </a>
+						</p>
+						[/#list] [/@cms_content_list]
+					</div>
+					<div class="sjxwlb">
+					[@cms_content_list orderBy='2' count='8' recommend='1'] [#list
+							tag_list as a]
+							<a href="${a.url}" title="[${a.title}]" target="_blank">
+									[[@text_cut s=a.title len=titLen /]]</a> [/#list]
+							[/@cms_content_list]
+					</div>
+				</div>
+			</div>
+			<div class="shuju_cjrl">
+      <div class="title"> <span style="font-family:'微软雅黑', Verdana;;font-size:15px;">财经日历</span> <a target="_blank" href="/dailyfx_list/">更多&gt;&gt;</a> </div>
+      <script>
+        	var endtimes=new Array();//结束时间
+			endtimes[0]="4/6/2010 9:03:00";
+			endtimes[1]="4/6/2010 9:04:20";
+			endtimes[2]="4/8/2010 9:05:00";
+			endtimes[3]="4/9/2010 9:05:00";
+			endtimes[4]="4/9/2010 9:08:00";
+			endtimes[5]="4/9/2010 9:08:00";
+			
+			var nowtimes;
+			function givetime(){
+				nowtimes=new Date("4/6/2010 9:03:00");//当前服务器时间
+				window.setTimeout("DownCount()",1000)
+			}
+			function DownCount(){
+				nowtimes=Number(nowtimes)+1000;
+				for(var q=0;q&lt;=5;q++){
+					var theDay=new Date(endtimes[q]);
+					theDay=theDay++;
+					if(theDay&lt;=nowtimes){
+						document.getElementById("times"+q).innerHTML = "00h，00min，00s";
+					}else{
+						timechange(theDay,q);
+					}
+				}
+				window.setTimeout("DownCount()",1000)
+			}
+			function timechange(theDay,q){
+				var theDays=new Date(theDay);
+				var seconds = (theDays - nowtimes)/1000;
+				var minutes = Math.floor(seconds/60);
+				var hours = Math.floor(minutes/60);
+				var days = Math.floor(hours/24);
+				var CDay= days;
+				var CHour= hours % 24;
+				var CMinute= minutes % 60;
+				var CSecond= seconds % 60;
+				var CHour=CHour+CDay*24;
+				if(CMinute&lt;10){
+					CMinute="0"+CMinute;
+				}
+				if(CHour&lt;10){
+					CHour="0"+CHour;
+				}
+				if(CSecond&lt;10){
+					CSecond="0"+CSecond;
+				}
+				document.getElementById("times"+q).innerHTML = CHour + "h，" + CMinute + "min，" + CSecond + "s";
+			}
+			givetime();
+        </script>
+      <div style="width:730px;height:320px;overflow:auto;border-bottom:1px solid #cccccc;">
+        <table align="center" width="100%" cellspacing="1" cellpadding="1" border="0" bgcolor="#b2b2b2" style="margin-top:1px;font-size: 12px;" class="table" id="calendar">
+                    <tbody>
+            <tr>
+              <th>日期</th>
+              <th>时间</th>
+              <th>国家</th>
+              <th>事件</th>
+              <th width="43">影响</th>
+              <th width="70">前值</th>
+              <th width="60">预期</th>
+              <th width="66">结果</th>
+              <th> <span class="pointer" id="notificationTip"><img src="http://shequ.talkforex.com/statics/images/news/question.png" class="inline"></span> </th>
+            </tr>
+              [@cms_calendar]
+         [#list tag_list as a]
+                              <tr>
+            <td align="center" width="65">[#include "../include/date.html"/]</td>
+            <td align="center" width="50">${a.time}</td>
+            <td align="center" width="60">${a.country}</td>
+            <td align="center" width="230" valign="middle">${a.event}</td>
+            <td align="center">${a.importance}</td>
+            <td align="center">${a.previous}</td>
+            <td align="center">${a.median}</td>
+            <td align="center">${a.ifr_actual}</td>
+            <td align="center" width="52"><a class="hov bell " rel="201408280"><img src="http://shequ.talkforex.com/statics/images/news/bell-disable.png"></a></td>
+          </tr>
+         
+               [/#list]
+      [/@cms_calendar]
+        
+       </tbody>
+        </table>
+      </div>
+    </div>
+		</div>
+	</div>
+</body>
+</html>

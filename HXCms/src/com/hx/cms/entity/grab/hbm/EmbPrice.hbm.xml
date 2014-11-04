@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.hx.cms.entity.grab">
+	<class name="EmbPrice" table="ie_embprice">
+ 		<cache usage="read-write"/>
+		<id name="id" type="java.lang.Integer" column="id">
+			<generator class="increment" />
+		</id>
+		<property name="name" column="name" type="string" not-null="false" length="100"/>
+	 	<property name="newPrice" column="newprice" type="string" not-null="false" length="100"/>
+	 	<property name="highsALows" column="highsalows" type="string" not-null="false" length="100"/>
+	 	<property name="bugPrice" column="bugprice" type="string" not-null="false" length="100"/>
+	 	<property name="bugNum" column="bugnum" type="string" not-null="false" length="100"/>
+	 	<property name="sellPrice" column="sellprice" type="string" not-null="false" length="100"/>
+	 	<property name="sellNul" column="sellnul" type="string" not-null="false" length="100"/>
+	 	<property name="volume" column="volume" type="string" not-null="false" length="100"/>
+	 	<property name="todayPrice" column="todayprice" type="string" not-null="false" length="100"/>
+	 	<property name="yesterDayPrice" column="yesterdayprice" type="string" not-null="false" length="100"/>
+	 	<property name="maxPrice" column="maxprice" type="string" not-null="false" length="100"/>
+	 	<property name="minPrice" column="minprice" type="string" not-null="false" length="100"/>
+	 	<property name="stock" column="stock" type="string" not-null="false" length="100"/>
+	 	<property name="addStock" column="addstock" type="string" not-null="false" length="100"/>
+	 	<property name="externaldate" column="externaldate" type="string" not-null="false" length="100" />
+	</class>
+</hibernate-mapping>

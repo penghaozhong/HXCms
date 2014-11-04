@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.hx.cms.entity.grab">
+	<class name="Yhdt" table="ie_yhdt">
+ 		<cache usage="read-write"/>
+		<id name="id" type="java.lang.Integer" column="id">
+			<generator class="increment" />
+		</id>
+		<property name="bank" column="bank" type="string" not-null="false" length="100"/>
+	 	<property name="lastMeet" column="lastMeet" type="string" not-null="false" length="100"/>
+	 	<property name="nowlv" column="nowlv" type="string" not-null="false" length="100"/>
+	 	<property name="nextMeet" column="nextMeet" type="string" not-null="false" length="100"/>
+	 	<property name="expect" column="expect" type="string" not-null="false" length="100"/>
+	 	<property name="externaldate" column="externaldate" type="string" not-null="false" length="100" />
+	</class>
+</hibernate-mapping>

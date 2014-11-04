@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.hx.cms.entity.grab">
+	<class name="Avafx" table="ie_avafx">
+ 		<cache usage="read-write"/>
+		<id name="id" type="java.lang.Integer" column="id">
+			<generator class="increment" />
+		</id>
+	 	<property name="datetimes" column="datetimes" type="string" not-null="false" length="100"/>
+	 	<property name="brand" column="brand" type="string" not-null="false" length="100"/>
+	 	<property name="products" column="products" type="string" not-null="false" length="100"/>
+	 	<property name="price" column="price" type="string" not-null="false" length="100"/>
+	 	<property name="company" column="company" type="string" not-null="false" length="100"/>
+	 	<property name="purity" column="purity" type="string" not-null="false" length="100"/>
+	 	<property name="shougongfei" column="shougongfei" type="string" not-null="false" length="100"/>
+	 	<property name="zhangdie" column="zhangdie" type="string" not-null="false" length="100"/>
+	 	<property name="externaldate" column="externaldate" type="string" not-null="false" length="100" />
+	</class>
+</hibernate-mapping>

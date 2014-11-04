@@ -1,0 +1,100 @@
+<style type="text/css">
+.page{text-align:center;margin-top:10px; clear:both;}
+.page a{width:37px;height:29px;display:inline-block;text-align:center;line-height:29px;border:1px solid #d4d4d4;margin:0px 5px;font-weight:bold;color:#929292;}
+.page a:hover{ text-decoration:none;}
+.page a.hover,.page a:hover{background-color:#2d65a2;color:#fff;}
+</style>
+
+<script type="text/javascript">
+	
+	function redirect(pageNo){
+		
+		$.ajax({
+			type : "get",
+			dataType : "html",
+			url : "/searchJYSDB_"+pageNo+".jspx?contentId="+${contentId},//要抓取的网页地址。
+			success : function(data) {
+				$(oDiv2).empty(); //清空div下的内容
+				$(oDiv2).append(data)//显示在你要显示的地方
+			}
+		});
+	}
+	
+</script>
+
+
+<div  class="page" style="">
+
+
+[#assign p=tag_pagination/]
+[#assign lastPage=num/]
+
+[#if num == 0]
+
+	[#else]
+	[#if num<20]
+[#if p.firstPage]
+[#else]
+	<a href="javascript:redirect()" class="a1"> &lt;&lt;</a>
+	[#if p.prePage gt 0]
+		<a href="javascript:redirect(${p.prePage})" class="a1"> &lt; </a>
+	[/#if]
+[/#if]
+[#if pageNo-3 gt 1]
+	[#if num gt pageNo+2]
+		[#list pageNo-3..pageNo+2 as i]
+			[#if i = pageNo]
+				<a class="hover">${i}</a>
+			[#else]
+				<a href="javascript:redirect(${i})">${i}</a>
+			[/#if]
+		[/#list]
+	[#else]
+		[#list num-4..num as i]
+			[#if i = pageNo]
+				<a class="hover">${i}</a>
+			[#else]
+				<a href="javascript:redirect(${i})">${i}</a>
+			[/#if]
+		[/#list]
+	[/#if]
+[#else]
+	[#if num gt 5]
+		[#list 1..6 as i]
+			[#if i = pageNo]
+				<a class="hover">${i}</a>
+			[#else]
+				<a href="javascript:redirect(${i})">${i}</a>
+			[/#if]
+		[/#list]
+	[#else]
+		[#list 1..num as i]
+			[#if i = pageNo]
+			[#if i==1]
+				[#if lastPage = pageNo]
+					<a class="hover">${i}</a>
+				[#else]
+					<a class="hover">${i}</a>
+				[/#if]
+			[/#if]				
+			[#else]
+				<a href="javascript:redirect(${i})">${i}</a>
+			[/#if]
+		[/#list]
+	[/#if]
+[/#if]
+[#if lastPage = pageNo]
+[#else]
+	[#if num==1]
+	
+	[#else]
+	<a href="javascript:redirect(${p.nextPage})"> &gt; </a>
+	<a href="javascript:redirect(${num})"> &gt;&gt; </a>
+	[/#if]
+[/#if]
+
+[/#if]
+[/#if]
+
+</div>
+

@@ -1,0 +1,19 @@
+ <link rel="shortcut icon" href="${resSys}/favicon.ico" />
+<link href="/${res}/css/pub-css.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/css/common.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/css/header.css" rel="stylesheet" type="text/css"/>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<!-- 跟随要用 -->
+<script type="text/javascript" src="/${res}/js/simplefoucs.js" language="javascript"></script>
+<script type="text/javascript" src="${resSys}/jquery.vticker-min.js" language="javascript"></script>
+<script language="javascript" type="text/javascript">
+    function setTab(name,cursel,n){
+    for(i=1;i<=n;i++){
+    var menu=document.getElementById(name+i);
+    var con=document.getElementById("con_"+name+"_"+i);
+    menu.className=i==cursel?"hover":"";
+    con.style.display=i==cursel?"block":"none";
+    }
+    }
+    </script> 

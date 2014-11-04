@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>${channel.title!channel.name} - ${site.name}</title>
+<meta http-equiv="keywords" content="${channel.keywords!}" />
+<meta http-equiv="description" content="${channel.description!}" />
+[#include "../include/样式引入.html"/]
+</head>
+<body>
+	[#include "../include/页头顶栏.html"/]
+	<div class="main">
+		[#include "../include/标志和搜索.html"/] [#include "../include/页头导航栏.html"/]
+		<div class="clear"></div>
+		[#include "../include/栏目广告和位置.html"/]
+		<div class="clear"></div>
+		<div class="wrapper">
+    <!--左边内容  开始-->
+    <div class="leftmain">
+ 
+    </div>
+	<!--左边内容  结束-->
+    <!--右边内容  开始-->
+    <div class="rightmain">
+    	
+       ${channel.txt!}
+    </div>
+    <!--右边内容  结束-->
+</div>
+	</div>
+	<div class="clear"></div>
+	<div class="footer">
+		<div class="f_link">
+			[#include "../include/页脚关键词.html"/]
+			<div class="f_link03">[#include "../include/页脚风险提示.html"/]</div>
+			[#include "../include/页脚信息栏.html"/]
+		</div>
+	</div>
+</body>
+</html>
